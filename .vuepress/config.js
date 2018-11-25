@@ -2,6 +2,7 @@ module.exports = {
   title: 'dr4',
   description: 'The modern, binary object-oriented format',
   base:'/site/',
+  dest: 'docs',
   themeConfig: {
   	sidebar: 'auto',
   	displayAllHeaders: true,

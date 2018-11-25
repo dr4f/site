@@ -1,4 +1,7 @@
 # Script to update site distribution
 vuepress build
-cp -r .vuepress/dist docs
-echo "Copied static site to docs folder"
+echo "Built site to docs folder"
+git add .
+git commit -m "site update `date`"
+git push
+echo "Updated the site!"
