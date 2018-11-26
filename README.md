@@ -24,7 +24,11 @@ What makes `dr4` unique is that, unlike other binary data formats, it's not limi
 
 ## What is a 'row'?
 
-In `dr4`, data is organized in objects that are called rows. Rows 
+In `dr4`, data is organized in objects that are called rows. Each row contains a heterogenous number of fields. Each field represents a data `type`. `dr4` uses a vast selection of types to store data, like integers, floating point numbers, booleans, strings, lists, and much much more. Rows are composed of a header containing the offset to each field, and a body containing the data for each field. Learn more about rows here.
+
+## What can you do with `dr4`?
+
+The answer is just about anything.
 
 ## Files
 
