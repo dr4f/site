@@ -11,6 +11,7 @@ module.exports = {
   	 nav: [
   	    {text: 'Home', link: '/'},
   	    {text: 'About', link: '/about.html'},
+  	    {text: 'Format', link: '/format.html'},
   	    {text: 'Projects', link: '/projects/'}
   	 ]
   }

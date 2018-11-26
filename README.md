@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: Get started here ->
-actionLink: /
+actionLink: /format.html
 features:
 - title: Fast and Scalable
   details: Read an unlimited volume of objects with type-marked fields.
@@ -28,8 +28,8 @@ In `dr4`, data is organized in objects that are called rows. Each row contains a
 
 ## What can you do with `dr4`?
 
-The answer is just about anything.
+The answer is just about anything. `dr4` is a highly dynamic, performant data storage format, that can be used to make a database, a data processor, big data applications, data science apps, loggers, and much more. The possibilities are quite endless. `dr4` is specialized to combine the advantages of both *table-like* formats as well as *object-like* formats. 
 
 ## Files
 
-The `dr4` format can be saved in files called `.dr4` files. These files are binary files that stores the row objects.
+The `dr4` format can be saved in files called `.dr4` files. These files are binary files that store the row objects. More information about  `dr4` documents and files can be found on the [format page](/format.html).
