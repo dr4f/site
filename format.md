@@ -37,4 +37,30 @@ The last two 8-bit unsigned bytes of the header are reserved for future use. Mos
 
 ## Document Body
 
-The document body consists of a sequence of data rows.
+The document body consists of a sequence of data rows. Each row occupies a fixed amount of bytes, denoted by a size field within it's header. The sequence of rows is terminated by a four byte sequence containing all zeroes. 
+
+### Structure
+
+The overall document body can be represented by the following structure:
+
+```
+(row list)   [0][0][0][0]
+   |               |
+  rows        Termination Seq
+```
+
+### Termination Sequence
+
+The sequence of 8-bit unsigned integers `0, 0, 0, 0` marks the end of a `dr4` document.
+
+The true role of the termination sequence is to symbolize a value of `0`. There is no specificed limit to the size of `dr4` documents. Therefore, if a document is intended to be read row by row, as opposed to in a single chunk, the termination sequence provides a stopping point.
+
+### Row List
+
+The *row list*, pictured above is a finite sequence of data rows. These rows each contain their own header and body. The first four bytes of any row correspond to it's total size in bytes. No row can ever have a size of zero, or be "empty". 
+
+The reason the termination sequence of the document is four bytes long and not 1 is if the document is read row by row, when a size of zero is detected to read the next row, it must be the end of the document, as no row may have a size of zero.
+
+## Row
+
+The most important element of a `dr4` document is the *row*. A row, also called a data row, is a binary, fixed size object, that contains an arbitrary number of fields. The row is divided between a header and a body.
