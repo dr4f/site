@@ -77,4 +77,60 @@ The row header is divided into three segments, the size, the length (number of f
 
 #### Size
 
-The size value of a row header always refers to the size of the row *not* including the unsigned 32-bit integer used to store the size.
+The size value of a row header always refers to the size of the row *not* including the unsigned 32-bit integer used to store the size. The size of a row can never be 0. In the future, there may be variant formats of `dr4` that use smaller or larger max sizes of rows.
+
+#### Length
+
+The length value of a row header refers to the number of fields in a row. It is stored as a 32-bit unsigned integer (4 byte sequence) right after the size. It, like the size, can never be 0.
+
+#### Offsets
+
+The offsets array of a row header stores the byte offset at which each field exists in the row. Each offset refers to the offset from the first byte of the *row body*, not the header. The first offset in the array is always 0, as the first field always starts right after the header portion of the row ends. Attempting to index an offset array with an integer greater than the *length* of the row is invalid.
+
+### Row Body
+
+The row body consists of the packed data for the fields in a row. Every field within the body contains a mark byte, a single 8-bit unsigned integer to indicate the field's type, followed by additional data the field contains. The entire set of supported types is discussed in details in the `dr4` specification. 
+
+The row body always ends with a `0` byte. In the type systen, this is referred to as the `stop` type. This byte is accounted for in the *size* value of the row header. The offset of the stop byte is not stored in the offset array, nor is it counted as part of the *length* value in the header.
+
+An example row body is as follows:
+
+```
+\x_none \x_none \x_bool \x01 \x_stop
+```
+
+**Note**: This example uses a different byte notation, where an element prefixed with `\x` indicates an 8-bit unsigned integer. Named bytes, such as `\x_none` each correspond to different bytes, but for visualization their values are replaced with names.
+
+In this row body, we have two `none` fields, followed by a boolean field who's value is true, followed by the stop byte.
+
+### Endianess
+
+For now, `dr4` does not support a specific endian format. Since `dr4` was originally developed on a unix platform, all of the binary representations here are in little endian form. Satisfying the `dr4` spec does not require a specific endian, just the arrangements and positions of specific values. 
+
+## Examples
+
+Given the explanation of the `dr4` document format, this section will provide some full, binary examples of documents.
+
+### Single Row, Single Field
+
+Below is a document with a single row, and one item in that row
+
+```
+\x83\x94\x121\x00\x00\x01\x00\x00 -> doc header
+\x14\x00\x00\x00 -> row size
+\x01\x00\x00\x00 -> row length
+\x00\x00\x00\x00 -> offset array
+\x_none\x_stop -> row body
+\x00\x00\x00\x00 -> doc term
+```
+
+### Only Row, Two Heterogeneous Fields
+
+An example of a row (not an entire document), with two differently typed fields
+
+```
+\x20\x00\x00\x00 \x02\x00\x00\x00 \x00\x00\x00\x00 \x02\x00\x00\x00 \x_bool\x00 \x_bool\x01 \x_stop
+|______________| |______________| |______________| |______________| |_________|_|__________|______|
+       |                |                |                |                      |            |
+      size            length           offset_1        offset_2              fields         stop
+```
