@@ -63,4 +63,18 @@ The reason the termination sequence of the document is four bytes long and not 1
 
 ## Row
 
-The most important element of a `dr4` document is the *row*. A row, also called a data row, is a binary, fixed size object, that contains an arbitrary number of fields. The row is divided between a header and a body.
+The most important element of a `dr4` document is the *row*. A row, also called a data row, is a binary, fixed size object, that contains an arbitrary number of fields. The row is divided between a header and a body. The header contains the size, number of fields, and an array to hold the offsets of each field. The body contains the packed, binary data values for the fields. 
+
+### Row Header
+
+The row header is divided into three segments, the size, the length (number of fields), and the offset array. The size and length are both unsigned 32-bit integers, while the offset array is just a series of 32-bit unsigned integers. The *length of the offset array* is always equal to the value in the *length header field*. The structure of the row header is depicted below:
+
+```
+ (size)       (length)            (offsets...)
+   |             |                    |
+[uint-32]    [uint-32]     [uint-32]_1 ... [uint-32]_n
+```
+
+#### Size
+
+The size value of a row header always refers to the size of the row *not* including the unsigned 32-bit integer used to store the size.
