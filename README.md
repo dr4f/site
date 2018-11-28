@@ -10,6 +10,12 @@ features:
 - title: Object-oriented and tables combined
   details: Manage data in a format thats both tabular and object-like.
 
+meta:
+- name: keywords
+  content: files data science csv bson file streaming programming format
+- name: author
+  content: Joshua Weinstein
+
 footer: MIT Licensed | Copyright © 2018-present Joshua Weinstein
 ---
 
