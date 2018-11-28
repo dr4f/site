@@ -134,3 +134,17 @@ An example of a row (not an entire document), with two differently typed fields
        |                |                |                |                      |            |
       size            length           offset_1        offset_2              fields         stop
 ```
+
+### Invalid Row - length
+
+Here is an example of a row which it's length header value is greater than the number offsets it's header carries.
+
+
+```
+\x17\x00\x00\x00 \x05\x00\x00\x00 \x00\x00\x00\x00  \x_si32\x30\x02\x00\x00  \x_stop
+|______________| |______________| |______________|  |________________________|______|
+       |                |                |                      |               |
+      size            length           offset_1               fields           stop
+```
+
+*Note*: `\x_si32` indicates the type for a signed 32-bit integer.
