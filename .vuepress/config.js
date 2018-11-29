@@ -12,6 +12,7 @@ module.exports = {
   	    {text: 'Home', link: '/'},
   	    {text: 'About', link: '/about.html'},
   	    {text: 'FAQ', link: '/faq.html'},
+  	    {text: 'Spec', link: '/spec/'},
   	    {text: 'Format', link: '/format.html'},
   	    {text: 'Projects', link: '/projects/'}
   	 ]

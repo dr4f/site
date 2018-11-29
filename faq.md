@@ -17,3 +17,7 @@ Yes. The sizes and fields of each row within a document can all be different fro
 None. The only limits imposed on the size of an entire document lie with the operating system it is stored on. As explained in the format description, there is no storage of the entire size of the document. This allows new rows to be easily added to a document, without needing to read all of it into memory, or update other portions of it.
 
 The max size of an individual row is 4294 MB.
+
+### What kind of libraries are available to handle dr4 documents?
+
+The [projects page](/projects/) contains a directory of open source libraries and projects that provide functionality for dealing with `dr4` documents and files. New submissions to the projects directory are always welcomed.
