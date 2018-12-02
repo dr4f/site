@@ -10,4 +10,6 @@ For more info on the document format, see the [format page](/format.html)
 
 ## Versions
 
+
+* [0.0.0](/spec/0-0-0.html)    *Note: non-standard version* 
 * [0.0.1](/spec/0-0-1.html)

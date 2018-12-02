@@ -21,3 +21,19 @@ The max size of an individual row is 4294 MB.
 ### What kind of libraries are available to handle dr4 documents?
 
 The [projects page](/projects/) contains a directory of open source libraries and projects that provide functionality for dealing with `dr4` documents and files. New submissions to the projects directory are always welcomed.
+
+### How can more rows be added to a document?
+
+A `dr4` document does not store information related to the total size of the document, nor the number of rows. Thus, additional rows can be appended or added to the end of document by *overwriting* it's termination cap, writing more rows, and then *re-writing* the cap after the new last row of the document.
+
+Below is an example of such an operation:
+
+```
+{doc_header} {row_1} {row_2} \x00\x00\x00\x00
+                            ^
+                            |
+                            | overwrite
+                            |
+                            {row-3} \x00\x00\x00\x00
+```
+
