@@ -12,6 +12,8 @@ These are projects that are either shared, static, or single-header libraries wr
 
 A single-header c library that can read, write, and scan a limited subset of `dr4` types.
 
+> *Note:* Follows dr4 version 0.0.0, a non-standard version
+
 ## Contributing
 
 If you want your project added here, [open an issue here](https://github.com/dr4f/site/issues). The only real requirement is that your project should use `dr4` in some way, according to the specification.

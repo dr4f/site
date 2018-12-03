@@ -8,6 +8,12 @@ This page is a resource to answer commonly asked questions on the `dr4` document
 
 `dr4` is equipped to store any kind of data that can be represented in some form of an object. Text, database tables, `CSV` files, json files, can all be converted and stored as `dr4` documents. The rather larger limit to the size of individual data rows (4294 MB) in `dr4` also allows large data types to be stored in `dr4` as well.
 
+### Why is `dr4` a binary format?
+
+Binary data can be processed more quickly and can hold more information about data while taking up less space. While it's not easily readable by humans, the structure of a `dr4` document allows visualizers or debuggers to interpret and print a textual representation of it's data.
+
+Classic data formats such as `XML` that allow detailed information to be stored about data take up far more space than `dr4` does.
+
 ### Can different types of data be stored in the same document?
 
 Yes. The sizes and fields of each row within a document can all be different from one another. `dr4` is unique in the fact it can store heterogeneous data objects, in binary form.
