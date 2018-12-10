@@ -2,6 +2,8 @@
 
 This part of the site contains references and links to projects and repositories that use the dr4 format. Some are written and maintained by the dr4 foundation, some are written by external contributors. The projects listed here are split by either the programming language they are written in, or their purpose in regards to the `dr4` format, such as a database or logging client.
 
+For a list of utilities developed to support dr4 software, [check out this page](/projects/utilities.html)
+
 ## C - Libraries
 
 These are projects that are either shared, static, or single-header libraries written in C, that provide `dr4` functionality.
