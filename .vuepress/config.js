@@ -10,6 +10,7 @@ module.exports = {
   	repoLabel: 'dr4 on GitHub',
   	 nav: [
   	    {text: 'Home', link: '/'},
+        {text: 'Blog', link:'/blog/'},
   	    {text: 'About', link: '/about.html'},
   	    {text: 'FAQ', link: '/faq.html'},
   	    {text: 'Spec', link: '/spec/'},
