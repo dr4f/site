@@ -36,6 +36,8 @@ In `dr4`, data is organized in objects that are called rows. Each row contains a
 
 The answer is just about anything. `dr4` is a highly dynamic, performant data storage format, that can be used to make a database, a data processor, big data applications, data science apps, loggers, and much more. The possibilities are quite endless. `dr4` is specialized to combine the advantages of both *table-like* formats as well as *object-like* formats. 
 
+For more news, tutorials, and info on `dr4`, check out [the blog](/blog/)
+
 ## Files
 
 The `dr4` format can be saved in files called `.dr4` files. These files are binary files that store the row objects. More information about  `dr4` documents and files can be found on the [format page](/format.html).
