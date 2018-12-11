@@ -9,6 +9,8 @@ meta:
   content: Joshua Weinstein
 ---
 
+# A new way to deal with data
+
 The data we use and see is stored in a variety of different formats. Text, images, emails, videos, logs, spreadsheets, a nearly infinite amount of channels and formats. In programming, most of the data that applications deal with is *object-oriented* data. Data can be considered object-oriented if it contains fields or keys which hold values. Almost anything can be *modeled* as an object. The power of processing object-oriented data can provide incredible insights and services in software.
 
 ## What exactly is an object?
