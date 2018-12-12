@@ -15,9 +15,22 @@ The data we use and see is stored in a variety of different formats. Text, image
 
 ## What exactly is an object?
 
-The term "object" can be a bit ambiguous, it carries different meanings in different settings. In programming, *object* refers to some compound data structure that can be constructed and destroyed. These objects are usually *defined* in the respective language through writing the structure of the desired object.
+The term "object" can be a bit ambiguous, it carries different meanings in different settings. In programming, *object* refers to some compound data structure that can be constructed and destroyed. These objects are usually *defined* in the respective language through writing the structure of the desired object. A common example would be a `class` defined in python:
+
+```python
+
+class Fruit(object):
+
+	def __init__(self, name, calories):
+		self.name = name
+		self.calories = calories
+```
+
+Here, the `Fruit` object will contain two fields, *name* and *calories*. Yet the sizes of the two fields, their offsets, and the memory `Fruit` instances would be allocated in are hidden. The true storage representation of the object is masked by the language. Without additional code or libraries, the data in the object is not portable or accessable beyond the Python runtime.
+
+Common methods of transporting object data out of programs are serialization formats like `JSON`. These are often text-based formats, which although useful, have unique drawbacks.
 
 
 ## Storage Formats
 
-Data, particularly object-oriented is commonly stored in several document formats. `CSV`, `JSON`, `XML`, the list goes on and on. Data objects are also stored in binary formats, like `BSON`. Binary formats can usually store data in either less space or more detailed information. Databases, for example, almost always store data in binary objects.
+Data, particularly object-oriented is commonly stored in several document formats. `CSV`, `JSON`, `XML`, the list goes on and on. Data objects are also stored in binary formats, like `BSON`. Binary formats can usually store data in either less space or more detailed information. Databases, for example, almost always store data in binary objects. Storage formats differ from the programming runtime objects discussed previously because formats make readability and writability a priority.
