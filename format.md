@@ -1,15 +1,15 @@
 # Format
 
-The `dr4` format can best be described in the form of *documents*. Documents are composed of both a header and a body. At a high level, they symbolize a collection of *data rows*. At the document level, an 8-byte header at the beginning of the document stores the information needed to process the body. This information consists of a 3 byte *magic* sequence, a 3 byte versioning sequeunce, and 2 bytes that are currently reserved for future use. The 2 byte sequence will likely be used to handle different variants of the `dr4` format.
+The `dr4` format can best be described in the form of *documents*. Documents are composed of both a header and a body. At a high level, they symbolize a collection of *data rows*. At the document level, an 8-byte header at the beginning of the document stores the information needed to process the body. This information consists of a 3 byte *magic* sequence, a 3 byte versioning sequeunce, a 1 byte to denote size variety, and 1 byte reserved for future use.
 
 ## Document Header
 
 The 8-byte document header is structured with the following representation.
 
 ```
-[83][94][121]  [0][0][1]    [0][0]
-     |             |           |
-  magic seq     version    reserved
+[83][94][121]  [0][0][1]   [0]       [0]
+     |             |        |         |
+  magic seq     version    sizer    reserved
 ```
 
 ### Structure
@@ -31,9 +31,19 @@ The version of `dr4` the document corresponds to is represented by three 8-bit u
 The major release number is incremented the most seldomly, while the third byte is incremented the most frequently. `dr4` is not a software package or library, it is a specification for a data or file format. The only real difference between versions are the formats, sizes, or structures of the data types present in fields. All versions are backwards compatible to one another. The format of the file or rows will not change between versions.
 
 
-### Reserved Bytes
+### Size Variety
 
-The last two 8-bit unsigned bytes of the header are reserved for future use. Most likely, they will be used to represent variants of the `dr4` document that will be handled differently. Such as, if the main form of the `dr4` document stores the sizes and offsets as 32-bit unsigned integers, another variant might only use 16-bit unsigned integers.
+The `dr4` format supports 3 different size varieties. A *variety* means the size of the unit in the row header used to store the row size, row length, and row offsets. The supported varieties are:
+
+1. 8-bit
+2. 16-bit
+3. 32-bit
+
+The 32-bit variety is considered the regular or default size. However, if a system intending to use `dr4` possesses memory constraints, the 16-bit or 8-bit variety will fill such requirements. The sizer byte can be set as `\x08`, `\x16` or `\x32`, corresponding to 8-bit, 16-bit, or 32-bit respectively. 
+
+### Reserved Byte
+
+The last byte of the `dr4` document header is reserved for future use.
 
 ## Document Body
 
@@ -67,7 +77,7 @@ The most important element of a `dr4` document is the *row*. A row, also called 
 
 ### Row Header
 
-The row header is divided into three segments, the size, the length (number of fields), and the offset array. The size and length are both unsigned 32-bit integers, while the offset array is just a series of 32-bit unsigned integers. The *length of the offset array* is always equal to the value in the *length header field*. The structure of the row header is depicted below:
+The row header is divided into three segments, the size, the length (number of fields), and the offset array. The size and length are both unsigned 32-bit integers (also 8-bit or 16-bit, depending on variety), while the offset array is just a series of 32-bit unsigned integers. The *length of the offset array* is always equal to the value in the *length header field*. The structure of the row header is depicted below:
 
 ```
  (size)       (length)            (offsets...)
@@ -77,11 +87,11 @@ The row header is divided into three segments, the size, the length (number of f
 
 #### Size
 
-The size value of a row header always refers to the size of the row *not* including the unsigned 32-bit integer used to store the size. The size of a row can never be 0. In the future, there may be variant formats of `dr4` that use smaller or larger max sizes of rows.
+The size value of a row header always refers to the size of the row *not* including the unsigned integer used to store the size. The size of a row can never be 0. In the future, there may be variant formats of `dr4` that use smaller or larger max sizes of rows.
 
 #### Length
 
-The length value of a row header refers to the number of fields in a row. It is stored as a 32-bit unsigned integer (4 byte sequence) right after the size. It, like the size, can never be 0.
+The length value of a row header refers to the number of fields in a row. It is stored as an unsigned integer (1, 2, or 4 byte  sequence, depending on variety) right after the size. It, like the size, can never be 0.
 
 #### Offsets
 
@@ -113,7 +123,7 @@ Given the explanation of the `dr4` document format, this section will provide so
 
 ### Single Row, Single Field
 
-Below is a document with a single row, and one item in that row
+Below is a 32-bit variety document with a single row, and one item in that row
 
 ```
 \x83\x94\x121\x00\x00\x01\x00\x00 -> doc header
@@ -126,7 +136,7 @@ Below is a document with a single row, and one item in that row
 
 ### Only Row, Two Heterogeneous Fields
 
-An example of a row (not an entire document), with two differently typed fields
+An example of a 32-bit row (not an entire document), with two differently typed fields
 
 ```
 \x20\x00\x00\x00 \x02\x00\x00\x00 \x00\x00\x00\x00 \x02\x00\x00\x00 \x_bool\x00 \x_bool\x01 \x_stop
@@ -148,3 +158,14 @@ Here is an example of a row which it's length header value is greater than the n
 ```
 
 *Note*: `\x_si32` indicates the type for a signed 32-bit integer.
+
+### 16-bit Row
+
+Here is an example of a row within a `dr4` document with a 16-bit size variety.
+
+```
+\x11\x00 \x02\x00 \x00\x00 \x01\x00 \x_none \x_none \x_stop
+ |____|   |____|   |______________| |______________| |_____|
+   |        |             |                 |           |
+ size      len          offsets            fields      stop
+```
