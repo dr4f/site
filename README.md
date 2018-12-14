@@ -34,7 +34,7 @@ In `dr4`, data is organized in objects that are called rows. Each row contains a
 
 ## What can you do with `dr4`?
 
-The answer is just about anything. `dr4` is a highly dynamic, performant data storage format, that can be used to make a database, a data processor, big data applications, data science apps, loggers, and much more. The possibilities are quite endless. `dr4` is specialized to combine the advantages of both *table-like* formats as well as *object-like* formats. 
+The answer is just about anything. `dr4` is a highly dynamic, performant data storage format, that can be used to make a database, a data processor, big data applications, data science apps, machine learning, loggers, and much more. The possibilities are quite endless. `dr4` is specialized to combine the advantages of both *table-like* formats as well as *object-like* formats. 
 
 For more news, tutorials, and info on `dr4`, check out [the blog](/blog/)
 

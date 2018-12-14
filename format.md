@@ -77,8 +77,24 @@ The most important element of a `dr4` document is the *row*. A row, also called 
 
 ### Row Header
 
-The row header is divided into three segments, the size, the length (number of fields), and the offset array. The size and length are both unsigned 32-bit integers (also 8-bit or 16-bit, depending on variety), while the offset array is just a series of 32-bit unsigned integers. The *length of the offset array* is always equal to the value in the *length header field*. The structure of the row header is depicted below:
+The row header is divided into three segments, the size, the length (number of fields), and the offset array. The size and length are both unsigned (8, 16, or 32-bit) integers, while the offset array is just a series of (8, 16, or 32-bit) unsigned integers. The *length of the offset array* is always equal to the value in the *length header field*. The structure of the row header is depicted below:
 
+
+**8-bit variety**
+```
+ (size)       (length)            (offsets...)
+   |             |                    |
+[uint-8]    [uint-8]     [uint-8]_1 ... [uint-8]_n
+```
+
+**16-bit variety**
+```
+ (size)       (length)            (offsets...)
+   |             |                    |
+[uint-16]    [uint-16]     [uint-16]_1 ... [uint-16]_n
+```
+
+**32-bit variety**
 ```
  (size)       (length)            (offsets...)
    |             |                    |
