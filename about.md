@@ -19,3 +19,13 @@ The format best serves to combine the advantages of both *table-like* and *objec
 5. Can store type information for values, not just textual data.
 
 Overall, the lack of a storage format that could be use universally greatly motivated the design of `dr4`.  A format that meets the middle ground of many different applications is missing from the development world, and `dr4`'s purpose is to solve that.
+
+## Creation
+
+`dr4` was created by Josh Weinstein. Josh is a software engineer currently working in San Francisco.
+
+[Josh on github](https://github.com/jweinst1)
+
+## Contribution
+
+The `dr4` format is available for input and suggestions for future improvements. Feel free to visit the github and contribute.
