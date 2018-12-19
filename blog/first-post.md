@@ -28,7 +28,9 @@ class Fruit(object):
 
 Here, the `Fruit` object will contain two fields, *name* and *calories*. Yet the sizes of the two fields, their offsets, and the memory `Fruit` instances would be allocated in are hidden. The true storage representation of the object is masked by the language. Without additional code or libraries, the data in the object is not portable or accessable beyond the Python runtime.
 
-Common methods of transporting object data out of programs are serialization formats like `JSON`. These are often text-based formats, which although useful, have unique drawbacks.
+Common methods of transporting object data out of programs are serialization formats like `JSON`. These are often text-based formats, which although useful, have unique drawbacks. Data stored in text takes longer to read off disk, takes up more space, and takes time to convert back to text. Overall, it's not usable by software in it's usual form, it needs to be parsed and altered into runtime data the program understands.
+
+Binary formats, such as `BSON` are already in a format readable by programs.
 
 
 ## Storage Formats
