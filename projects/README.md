@@ -16,6 +16,16 @@ A single-header c library that can read, write, and scan a limited subset of `dr
 
 > *Note:* Follows dr4 version 0.0.0, a non-standard version
 
+## Tools
+
+These are projects that provide executables, or other tools to manage and utilize `dr4` documents.
+
+### dr4-debug
+
+[Repo Link](https://github.com/dr4f/dr4-debug)
+
+A cli tool that allows debugging, inspection, and visualization of `dr4` documents and files. Writtin in C.
+
 ## Contributing
 
 If you want your project added here, [open an issue here](https://github.com/dr4f/site/issues). The only real requirement is that your project should use `dr4` in some way, according to the specification.
